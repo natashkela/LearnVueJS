@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>VueJS</title>
+  <link rel="stylesheet" href="css/styles_2.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="exercise">
+  <!-- 1) Start the Effect with the Button.
+  The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick
+  (attach respective class to the div with id "effect" below) -->
+  <div>
+    <button @click="startEffect">Start Effect</button>
+    <div id="effect" :class="classForEffect"></div>
+  </div>
+  <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
+  <div :class="[red,fontWhite]">I got no class :(</div>
+  <!-- 3) Let the user enter a class (create some example classes) and attach it -->
+  <div>
+	  <!-- Use laterClass as example value -->
+    <input type="text" v-model="className">
+    <div :class="className"></div>
+  </div>
+  <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
+  <div>
+    <input type="text" v-model="className2">
+    <input type="text" v-model="isTrue">
+    <div :class="[className2, {visible: isTrue}]"></div>
+  </div>
+  <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
+  <div>
+    <input type="text" v-model="myStyle.backgroundColor">
+    <div :style="myStyle"></div>
+  </div>
+  <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
+  <div>
+    <button @click="startProgress">Start Progress</button>
+    <div :class="['progress-bar']" :style="progressBar"></div>
+  </div>
+</div>
+<script>
+	// You may of course also outsource this script code into a separate file (e.g. app.js) and simply import this file here
+	new Vue({
+		el: '#exercise',
+		data:{
+			classForEffect:'',
+			red: 'red',
+			fontWhite: 'fontWhite',
+			className:'initialClass',
+			isTrue: true,
+			className2:'initialClass',
+			myStyle: {
+				width: '100px',
+				height: '150px',
+				backgroundColor: 'gray'
+			},
+			progressBar: {
+				width: '0px',
+				backgroundColor: 'red'
+			}
+		},
+		computed:{
+		},
+		methods: {
+			startEffect: function(){
+				var vm = this;
+				setInterval(function(){
+					vm.classForEffect = vm.classForEffect != 'shrink' ? 'shrink' : 'highlight';
+				},2000);
+			},
+			startProgress:function(){
+				var vm = this;
+				var width = 0;
+
+				setInterval(function() {
+					width = width + 10;
+					vm.progressBar.width = width + 'px';
+				}, 500);
+			}
+		}
+	});
+</script>
+</body>
+</html>
