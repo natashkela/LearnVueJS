@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>VueJS</title>
+	<link rel="stylesheet" href="">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- $event is a reserved variable to get the event that is automatically passed -->
+		<button v-on:click="increase(2,$event)">Click Me</button>
+		<p>{{counter}}</p>
+		<!-- You could chain them if you wanted to .stop.prevent-->
+		<p v-on:mousemove="updateCoordinates"> Coordinates: {{x}} / {{y}} - <span v-on:mousemove.stop.prevent=""> DEAD SPOT </span></p>
+		<!-- On Enter Press Alert -->
+		<input type="text" v-on:keyup.enter="alertMe">
+	</div>
+	<script>
+	// You may of course also outsource this script code into a separate file (e.g. app.js) and simply import this file here
+		new Vue({
+			el: '#app',
+			data:{
+				counter: 0,
+				x:0,
+				y:0
+			},
+			methods: {
+				increase: function(step,e) {
+					this.counter+=step;
+					console.log(e);
+				},
+				updateCoordinates: function(e){
+					this.x = e.clientX;
+					this.y = e.clientY;
+				},
+				alertMe: function(e){
+					alert(e.target.value);
+				}
+				// dummy: function(e){
+				// 	e.stopPropagation();
+				// }
+			}
+		})
+	</script>
+</body>
+</html>
