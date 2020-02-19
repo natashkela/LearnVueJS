@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>VueJS</title>
+	<link rel="stylesheet" href="">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="name">
+		<p>{{name}}</p>
+
+		<button @click="counter++">Increase</button>
+		<button @click="counter--">Decrease</button>
+		<button @click="secondCounter++">Increase Second</button>
+		<p>Counter: {{counter}} {{secondCounter}}</p>
+		<p>Results: {{result()}} | {{output}}</p>
+	</div>
+	<script>
+	// You may of course also outsource this script code into a separate file (e.g. app.js) and simply import this file here
+		new Vue({
+			el: '#app',
+			data: {
+				name:'Nata',
+				counter:0,
+				secondCounter:0
+			},
+			computed:{
+				output: function(){
+					console.log("Running computed function");
+					return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5';
+				}
+			},
+			watch: {
+				counter: function(value){
+					var vm = this;
+					setTimeout(function(){
+						vm.counter = 0;
+					}, 2000);
+					console.log("Running Watch Function"+value);
+				}
+			},
+			methods: {
+				result:function () {
+					console.log('Running a method');
+					return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5';
+				}
+			}
+		})
+	</script>
+</body>
+</html>
