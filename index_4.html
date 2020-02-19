@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>VueJS</title>
+	<link rel="stylesheet" href="css/styles_1.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- conditionally attach blue classes on toggle with the computed function -->
+		<div class="demo" @click="attachRed = !attachRed" :class="divClasses"></div>
+		<div class="demo" :class="color"></div>
+		<!-- conditionally attach blue class toggle inline -->
+		<div class="demo" @click="attachBlue = !attachBlue" :class="{blue: attachBlue}"></div>
+		<!-- Attaching multiple classes, first the value of color and then red but only conditionally-->
+		<div class="demo" :class="[color, {red: attachRed}]"></div>
+		<div class="demo" :style="{backgroundColor:color}"></div>
+		<div class="demo" :style="[myStyle, {height: width+'px'}]"></div>
+		<hr>
+		<!-- Change class to whatever the value is of this-->
+		<input type="text" v-model="color">
+	</div>
+	<script>
+	// You may of course also outsource this script code into a separate file (e.g. app.js) and simply import this file here
+		new Vue({
+			el: '#app',
+			data:{
+				attachRed: false,
+				attachGreen: false,
+				attachBlue: false,
+				color: 'green',
+				width:50
+			},
+			computed:{
+				divClasses: function(){
+					return {
+						red: this.attachRed,
+						blue: !this.attachRed
+					};
+				},
+				myStyle: function(){
+					return {
+						width: this.width+'px'
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>
