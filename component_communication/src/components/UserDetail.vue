@@ -4,6 +4,7 @@
         <p>Many Details</p>
         <p>User Name - {{switchName()}}</p>
         <button @click="resetName">Reset Name</button>
+        <button @click="resetFn()">Reset Name Parent</button>
     </div>
 </template>
 
@@ -14,7 +15,10 @@ export default{
 			type: [String, Array],
             //required: true,
             default: "Name Goes Here"
-		}
+		},
+        resetFn:{
+			type: Function
+        }
     },
     methods:{
 		switchName(){
