@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>VueJS</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<p v-if="show">You can see me!</p>
+	<p v-else>Now you see me!</p>
+	<template v-if="show">
+		<h1> Heading </h1>
+		<p>Inside a template</p>
+	</template>
+	<p v-show="show">Do you also see me?</p>
+	<button @click="show=!show">Switch</button>
+</div>
+<script>
+	// You may of course also outsource this script code into a separate file (e.g. app.js) and simply import this file here
+	new Vue({
+		el: '#app',
+		data:{
+			show:true
+		}
+	})
+</script>
+</body>
+</html>
