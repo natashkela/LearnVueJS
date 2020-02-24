@@ -4,7 +4,7 @@
         <hr>
         <div class="row">
             <server-container></server-container>
-            <server-detail></server-detail> 
+            <server-detail></server-detail>
         </div>
         <hr>
         <footer-server></footer-server>
