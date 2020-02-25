@@ -11,7 +11,9 @@
                    <!--<span>This is a default slot too</span>-->
                <!--</app-quote>-->
 
-                <component :is="selectedComponent"><p>Default Content</p></component>
+                <keep-alive> <!-- Do not destroy components -->
+                    <component :is="selectedComponent"><p>Default Content</p></component>
+                </keep-alive>
             </div>
         </div>
     </div>
