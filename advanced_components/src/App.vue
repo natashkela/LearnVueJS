@@ -11,7 +11,7 @@
                    <!--<span>This is a default slot too</span>-->
                <!--</app-quote>-->
 
-                <component :is="selectedComponent"></component>
+                <component :is="selectedComponent"><p>Default Content</p></component>
             </div>
         </div>
     </div>
